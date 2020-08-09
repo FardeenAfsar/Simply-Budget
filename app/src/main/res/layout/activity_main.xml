@@ -2,9 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activityMain"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+
     <androidx.coordinatorlayout.widget.CoordinatorLayout
 
         android:id="@+id/container_layout_fab"
@@ -27,6 +29,39 @@
             app:fabSize="normal"
             app:tint="@null" />
 
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+
+        android:id="@+id/coordinatorLayout2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="110dp"
+        android:layout_marginBottom="600dp"
+        app:layout_constraintBottom_toBottomOf="@+id/container_layout_fab"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="Balance: "
+            android:textSize="45sp" />
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        app:layout_constraintBottom_toBottomOf="@+id/coordinatorLayout2"
+        app:layout_constraintStart_toEndOf="@+id/coordinatorLayout2">
+
+        <TextView
+            android:id="@+id/totalBalance"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="$0.00"
+            android:textSize="45sp" />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
