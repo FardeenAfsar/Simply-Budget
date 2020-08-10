@@ -1,13 +1,18 @@
 package com.example.budget_planner;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.res.ColorStateList;
+import android.graphics.Color;
 import android.view.View;
 
 import android.os.Bundle;
 import android.widget.EditText;
 
-public class FAB_PLUS_EXTENSION extends AppCompatActivity {
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
+public class FAB_PLUS_EXTENSION extends AppCompatActivity {
+    private boolean state;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,5 +25,19 @@ public class FAB_PLUS_EXTENSION extends AppCompatActivity {
         float tempBalance = Float.parseFloat(inputMoney.getText().toString());
         mainObj.setBalance(mainObj.getBalance()+tempBalance);
         finish();
+    }
+    public void incomeFab (View view){
+        ExtendedFloatingActionButton incFab = (ExtendedFloatingActionButton) findViewById(R.id.incomeFab);
+        ExtendedFloatingActionButton expFab = (ExtendedFloatingActionButton) findViewById(R.id.expenseFab);
+        incFab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#03DAC5")));
+        expFab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#C8C8C8")));
+
+    }
+    public void expenseFab (View view){
+        ExtendedFloatingActionButton expFab = (ExtendedFloatingActionButton) findViewById(R.id.expenseFab);
+        ExtendedFloatingActionButton incFab = (ExtendedFloatingActionButton) findViewById(R.id.incomeFab);
+        expFab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#03DAC5")));
+        incFab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#C8C8C8")));
+
     }
 }
