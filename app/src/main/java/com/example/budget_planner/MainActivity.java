@@ -18,11 +18,18 @@ public class MainActivity extends AppCompatActivity {
     private FloatingActionButton FabPlus;
     private TextView totalBalance;
     private EditText inputMoney;
-    public static float Balance = 2.00f;
-    public static final String SHARED_PREFS = "sharedPrefs";
-    public static final String BALANCE = "balance";
+    private static float Balance;
+
+    public float getBalance(){ return Balance;}
+    public void  setBalance(float newBalance){ MainActivity.Balance = newBalance;}
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //Load Prefs
+        SharedPreferences sharedPreferences = getSharedPreferences("SHARED_PREFS", MODE_PRIVATE);
+        Balance = sharedPreferences.getFloat("BALANCE", 0.0f);
+
+        //
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //Get reference to main layout
@@ -34,26 +41,28 @@ public class MainActivity extends AppCompatActivity {
                 openExtension();
             }
         });
-        //Edit Balance
         totalBalance = (TextView) findViewById(R.id.totalBalance);
         totalBalance.setText("$"+String.valueOf(Balance));
-
-        //Save Prefs
-    //SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
-  //      SharedPreferences.Editor editor = sharedPreferences.edit();
-//        editor.putFloat(BALANCE, Balance);
 
         //Load Prefs
      //   SharedPreferences sharedPreferences1 = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        LayoutInflater inflater = getLayoutInflater();
-        View ExtensionLayout = inflater.inflate(R.layout.activity_f_a_b__p_l_u_s__e_x_t_e_n_s_i_o_n, null, false);
-        inputMoney =(EditText)ExtensionLayout.findViewById(R.id.inputMoney);
-        Balance += Float.parseFloat(inputMoney.getText().toString());
+    protected void onRestart() {
+        super.onRestart();
+        totalBalance = (TextView) findViewById(R.id.totalBalance);
+        totalBalance.setText("$"+String.valueOf(Balance));
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //Prefs
+        SharedPreferences sharedPreferences = getSharedPreferences("SHARED_PREFS", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putFloat("BALANCE", Balance);
+        editor.apply();
     }
 
     public void openExtension(){
