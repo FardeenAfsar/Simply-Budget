@@ -29,10 +29,8 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("SHARED_PREFS", MODE_PRIVATE);
         Balance = sharedPreferences.getFloat("BALANCE", 0.0f);
 
-        //
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Get reference to main layout
         //Fab activity change
         FabPlus =(FloatingActionButton)findViewById(R.id.fab_button);
         FabPlus.setOnClickListener(new View.OnClickListener() {
@@ -44,8 +42,6 @@ public class MainActivity extends AppCompatActivity {
         totalBalance = (TextView) findViewById(R.id.totalBalance);
         totalBalance.setText("$"+String.valueOf(Balance));
 
-        //Load Prefs
-     //   SharedPreferences sharedPreferences1 = getSharedPreferences(SHARED_PREFS, MODE_PRIVATE);
     }
 
     @Override
