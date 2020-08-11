@@ -13,8 +13,9 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="250dp"
         android:inputType="numberDecimal"
-        android:text="0.00"
-        android:textSize="50sp"
+        android:textAlignment="center"
+        android:hint="Enter Transaction"
+        android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,7 +65,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="Income"
-                app:backgroundTint="#C8C8C8"
+                app:backgroundTint="#03DAC5"
                 android:onClick="incomeFab"
                 />
 
