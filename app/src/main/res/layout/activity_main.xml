@@ -16,6 +16,20 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
+        <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+            android:id="@+id/addReceipt"
+            android:layout_width="225sp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:text="Add Receipt"
+            android:textSize="18sp"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#000000"
+            app:icon="@drawable/ic_baseline_add_24"
+            app:iconSize="25sp"
+            app:iconTint="#FFFFFF"
+            />
+
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_button"
             android:layout_width="wrap_content"
@@ -47,25 +61,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
-            >
-
-            <TextView
-                android:id="@+id/textView"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Balance: "
-                android:textSize="45sp"
-                />
-
-            <TextView
-                android:id="@+id/totalBalance"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_toEndOf="@+id/textView"
-                android:text="$0.00"
-                android:textSize="45sp" />
-
-        </RelativeLayout>
+            />
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
