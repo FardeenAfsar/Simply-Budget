@@ -9,11 +9,13 @@ import android.view.View;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
 public class FAB_PLUS_EXTENSION extends AppCompatActivity {
     private boolean state = true;
+    private String activeBtn = "type";
     private String[] incomeOptions = {"income_opt1", "income_opt2", "income_opt3", "income_opt4", "income_opt5"};
     private String[] expenseOptions = {"expense_opt1", "expense_opt2", "expense_opt3", "expense_opt4", "expense_opt5", "expense_opt6", "expense_opt7"};
     @Override
@@ -23,14 +25,32 @@ public class FAB_PLUS_EXTENSION extends AppCompatActivity {
 
     }
     public void onFabClick (View view){
+        MainActivity mainObj = new MainActivity();
         EditText inputMoney =(EditText) findViewById(R.id.inputMoney);
         if(inputMoney.getText().toString().isEmpty()){ finish(); }
         else{
-            MainActivity mainObj = new MainActivity();
             float tempBalance = Float.parseFloat(inputMoney.getText().toString());
             mainObj.setBalance((state)?mainObj.getBalance() + tempBalance:mainObj.getBalance() - tempBalance);
             finish();
         }
+
+
+        //MODEL
+        History history;
+        try {
+            history = new History(mainObj.getBalance(), Float.parseFloat(inputMoney.getText().toString()), activeBtn);
+            Toast.makeText(FAB_PLUS_EXTENSION.this, history.toString(),Toast.LENGTH_SHORT).show();
+        }catch (Exception e){
+            Toast.makeText(FAB_PLUS_EXTENSION.this, "ERROR",Toast.LENGTH_SHORT).show();
+            history = new History(0,0,"error");
+        }
+
+
+        //DATABASE
+        Database database = new Database(FAB_PLUS_EXTENSION.this);
+
+        boolean success = database.addOne(history);
+        Toast.makeText(FAB_PLUS_EXTENSION.this, "Success=" + success, Toast.LENGTH_SHORT).show();
 
     }
     public void incomeFab (View view){
@@ -50,6 +70,16 @@ public class FAB_PLUS_EXTENSION extends AppCompatActivity {
         state = false;
         enableButtons(expenseOptions);
         disableButtons(incomeOptions);
+    }
+    public void optionsBtn (View view){
+        switch (view.getId()) {
+            case R.id.income_opt1:
+                activeBtn = "Allowance";
+                break;
+            case R.id.income_opt2:
+                activeBtn = "Business Profits";
+                break;
+        }
     }
 
     public void disableButtons(String[] buttonNames) {

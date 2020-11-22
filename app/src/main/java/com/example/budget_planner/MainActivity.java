@@ -2,6 +2,7 @@ package com.example.budget_planner;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.Activity;
 import android.content.SharedPreferences;
@@ -9,13 +10,20 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.content.Intent;
+import android.widget.Adapter;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
     private FloatingActionButton FabPlus;
+    private Button historyActivity;
     private TextView totalBalance;
     private EditText inputMoney;
     private static float Balance;
@@ -42,6 +50,15 @@ public class MainActivity extends AppCompatActivity {
         totalBalance = (TextView) findViewById(R.id.totalBalance);
         totalBalance.setText("$"+String.valueOf(Balance));
 
+        //History activity change
+        historyActivity = (Button)findViewById(R.id.historyBtn);
+        historyActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                openHistory();
+            }
+        });
+
     }
 
     @Override
@@ -63,6 +80,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void openExtension(){
         Intent intent = new Intent(this, FAB_PLUS_EXTENSION.class);
+        startActivity(intent);
+    }
+
+    public void openHistory(){
+        Intent intent = new Intent(this, TransactionHistory.class);
         startActivity(intent);
     }
 
