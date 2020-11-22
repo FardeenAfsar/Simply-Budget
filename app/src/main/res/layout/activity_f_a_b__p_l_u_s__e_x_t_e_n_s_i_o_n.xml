@@ -11,10 +11,10 @@
         android:id="@+id/inputMoney"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="250dp"
+        android:layout_marginBottom="500dp"
+        android:hint="Enter Transaction"
         android:inputType="numberDecimal"
         android:textAlignment="center"
-        android:hint="Enter Transaction"
         android:textSize="40sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,7 +25,7 @@
         android:id="@+id/coordinatorLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="450dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,6 +45,7 @@
         android:id="@+id/coordinatorLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="300dp"
         app:layout_constraintBottom_toTopOf="@+id/coordinatorLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -64,10 +65,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Income"
-                app:backgroundTint="#03DAC5"
                 android:onClick="incomeFab"
-                />
+                android:text="Income"
+                app:backgroundTint="#03DAC5" />
 
             <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
                 android:id="@+id/expenseFab"
@@ -76,11 +76,176 @@
                 android:layout_marginStart="50dp"
                 android:layout_toEndOf="@+id/incomeFab"
                 android:gravity="center"
-                android:text="Expense"
-                app:backgroundTint="#C8C8C8"
                 android:onClick="expenseFab"
-                />
+                android:text="Expense"
+                app:backgroundTint="#C8C8C8" />
         </RelativeLayout>
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/income_opt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="200dp"
+        android:gravity="left|center"
+        android:onClick="incomeFab"
+        android:text="Allowance"
+        app:backgroundTint="#C8C8C8"
+        app:layout_constraintBottom_toTopOf="@+id/coordinatorLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/coordinatorLayout3" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/income_opt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:gravity="left|center"
+        android:onClick="incomeFab"
+        android:text="Business Profits"
+        app:backgroundTint="#C8C8C8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/income_opt1" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/income_opt3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:gravity="left|center"
+        android:onClick="incomeFab"
+        android:text="Salary"
+        app:backgroundTint="#C8C8C8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/income_opt2" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/income_opt4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:gravity="left|center"
+        android:onClick="incomeFab"
+        android:text="Bonus"
+        app:backgroundTint="#C8C8C8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/income_opt3" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/income_opt5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="5dp"
+        android:gravity="left|center"
+        android:onClick="incomeFab"
+        android:text="Others"
+        app:backgroundTint="#C8C8C8"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/income_opt4" />
+
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/expense_opt1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="200dp"
+        android:gravity="right|center"
+        android:onClick="expenseFab"
+        android:text="Food"
+        android:visibility="invisible"
+        app:backgroundTint="#C8C8C8"
+        app:layout_constraintBottom_toTopOf="@+id/coordinatorLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/coordinatorLayout3"
+        app:layout_constraintVertical_bias="0.495" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/expense_opt2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:gravity="right|center"
+        android:visibility="invisible"
+        android:onClick="expenseFab"
+        android:text="Transportation"
+        app:backgroundTint="#C8C8C8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/expense_opt1" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/expense_opt3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:gravity="right|center"
+        android:visibility="invisible"
+        android:onClick="expenseFab"
+        android:text="Social Life"
+        app:backgroundTint="#C8C8C8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/expense_opt5" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/expense_opt4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:gravity="right|center"
+        android:visibility="invisible"
+        android:onClick="expenseFab"
+        android:text="Bills"
+        app:backgroundTint="#C8C8C8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/expense_opt2" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/expense_opt5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:gravity="right|center"
+        android:visibility="invisible"
+        android:onClick="expenseFab"
+        android:text="Health"
+        app:backgroundTint="#C8C8C8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/expense_opt4" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/expense_opt6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="10dp"
+        android:gravity="right|center"
+        android:visibility="invisible"
+        android:onClick="expenseFab"
+        android:text="Gifts"
+        app:backgroundTint="#C8C8C8"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/expense_opt3" />
+
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/expense_opt7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="5dp"
+        android:gravity="right|center"
+        android:visibility="invisible"
+        android:onClick="expenseFab"
+        android:text="Other"
+        app:backgroundTint="#C8C8C8"
+        app:layout_constraintEnd_toStartOf="@+id/expense_opt1"
+        app:layout_constraintTop_toTopOf="@+id/expense_opt1" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
