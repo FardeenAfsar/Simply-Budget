@@ -130,16 +130,16 @@ public class FAB_PLUS_EXTENSION extends AppCompatActivity {
     }
 
 
+    public void deactivateButton(int id) {
+        ExtendedFloatingActionButton switchbtn = (ExtendedFloatingActionButton) findViewById(id);
+        switchbtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#C8C8C8")));
+        switchbtn.setTextColor(Color.parseColor("#000000"));
+    }
     public void activateButton(int id) {
         ExtendedFloatingActionButton switchbtn = (ExtendedFloatingActionButton) findViewById(id);
         switchbtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#6200EE")));
         switchbtn.setTextColor(Color.parseColor("#FFFFFF"));
         storedPrevState = id;
-    }
-    public void deactivateButton(int id) {
-        ExtendedFloatingActionButton switchbtn = (ExtendedFloatingActionButton) findViewById(id);
-        switchbtn.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#C8C8C8")));
-        switchbtn.setTextColor(Color.parseColor("#000000"));
     }
 
     public void disableButtons(String[] buttonNames) {
