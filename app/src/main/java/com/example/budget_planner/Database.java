@@ -18,15 +18,14 @@ public class Database extends SQLiteOpenHelper {
     public static final String COLUMN_HISTORY_CHANGE = "HISTORY_CHANGE";
     public static final String COLUMN_HISTORY_TYPE = "HISTORY_TYPE";
     public static final String COLUMN_ID = "ID";
-
+    public static final String COLUMN_DATE = "DATE";
     public Database(@Nullable Context context) {
         super(context, "history.db", null, 1);
     }
 
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
-        String createTableStatement = "CREATE TABLE " + HISTORY_TABLE + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_HISTORY_TOTAL + " INT, " + COLUMN_HISTORY_CHANGE + " INT, " + COLUMN_HISTORY_TYPE + " TEXT)";
-
+        String createTableStatement = "CREATE TABLE " + HISTORY_TABLE + " (" + COLUMN_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COLUMN_HISTORY_TOTAL + " INT, " + COLUMN_HISTORY_CHANGE + " INT, " + COLUMN_HISTORY_TYPE + " TEXT, " + COLUMN_DATE + " TEXT)";
         sqLiteDatabase.execSQL(createTableStatement);
     }
 
@@ -42,6 +41,7 @@ public class Database extends SQLiteOpenHelper {
         cv.put(COLUMN_HISTORY_TYPE, history.getType());
         cv.put(COLUMN_HISTORY_TOTAL, history.getTotal());
         cv.put(COLUMN_HISTORY_CHANGE, history.getChange());
+        cv.put(COLUMN_DATE, history.getDate());
 
         long insert = db.insert(HISTORY_TABLE, null, cv);
         if (insert == -1) {
@@ -51,25 +51,16 @@ public class Database extends SQLiteOpenHelper {
         }
     }
 
-    public List<History> getAll() {
-        List<History> returnList = new ArrayList<>();
-
-        String queryString = "SELECT * FROM " + HISTORY_TABLE;
+    //Cursor return
+    Cursor readData () {
+        String query = "SELECT * FROM " + HISTORY_TABLE;
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.rawQuery(queryString, null);
 
-        if (cursor.moveToFirst()) {
-            do {
-                Float amountTotal = cursor.getFloat(1);
-                Float amountChange = cursor.getFloat(2);
-                String amountType = cursor.getString(3);
-                History newHistory = new History(amountTotal, amountChange, amountType);
-                returnList.add(newHistory);
-            }while (cursor.moveToNext());
-        }else {
+        Cursor cursor = null;
+        if (db != null) {
+            cursor = db.rawQuery(query, null);
         }
-        cursor.close();
-        db.close();
-        return returnList;
+        return cursor;
     }
+
 }

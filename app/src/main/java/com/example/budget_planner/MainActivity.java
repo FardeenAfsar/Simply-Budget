@@ -24,6 +24,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
     private FloatingActionButton FabPlus;
     private Button historyActivity;
+    private Button deleteDb;
     private TextView totalBalance;
     private EditText inputMoney;
     private static float Balance;
@@ -59,6 +60,15 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        //Delete Database
+        deleteDb = (Button)findViewById(R.id.deleteDbBtn);
+        deleteDb.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MainActivity.this.deleteDatabase("history.db");
+            }
+        });
+
     }
 
     @Override
@@ -87,5 +97,6 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, TransactionHistory.class);
         startActivity(intent);
     }
+
 
 }
