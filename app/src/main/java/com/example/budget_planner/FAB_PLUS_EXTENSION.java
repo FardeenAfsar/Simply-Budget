@@ -13,9 +13,7 @@ import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 public class FAB_PLUS_EXTENSION extends AppCompatActivity {
@@ -34,6 +32,7 @@ public class FAB_PLUS_EXTENSION extends AppCompatActivity {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/YY");
         currentDate = simpleDateFormat.format(new Date());
     }
+
     public void onFabClick (View view){
         MainActivity mainObj = new MainActivity();
         EditText inputMoney =(EditText) findViewById(R.id.inputMoney);
@@ -62,7 +61,6 @@ public class FAB_PLUS_EXTENSION extends AppCompatActivity {
         ExtendedFloatingActionButton expFab = (ExtendedFloatingActionButton) findViewById(R.id.expenseFab);
         incFab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#03DAC5")));
         expFab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#C8C8C8")));
-        state = true;
         enableButtons(incomeOptions);
         disableButtons(expenseOptions);
     }
@@ -71,7 +69,6 @@ public class FAB_PLUS_EXTENSION extends AppCompatActivity {
         ExtendedFloatingActionButton incFab = (ExtendedFloatingActionButton) findViewById(R.id.incomeFab);
         expFab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#03DAC5")));
         incFab.setBackgroundTintList(ColorStateList.valueOf(Color.parseColor("#C8C8C8")));
-        state = false;
         enableButtons(expenseOptions);
         disableButtons(incomeOptions);
     }
@@ -81,54 +78,65 @@ public class FAB_PLUS_EXTENSION extends AppCompatActivity {
             case R.id.income_opt1:
                 activeBtn = "Allowance";
                 activateButton(R.id.income_opt1);
+                state = true;
                 break;
             case R.id.income_opt2:
                 activeBtn = "Business Profits";
                 activateButton(R.id.income_opt2);
+                state = true;
                 break;
             case R.id.income_opt3:
                 activeBtn = "Salary";
                 activateButton(R.id.income_opt3);
+                state = true;
                 break;
             case R.id.income_opt4:
                 activeBtn = "Bonus";
                 activateButton(R.id.income_opt4);
+                state = true;
                 break;
             case R.id.income_opt5:
                 activeBtn = "Other";
                 activateButton(R.id.income_opt5);
+                state = true;
                 break;
             case R.id.expense_opt1:
                 activeBtn = "Food";
                 activateButton(R.id.expense_opt1);
+                state = false;
                 break;
             case R.id.expense_opt2:
                 activeBtn = "Transportation";
                 activateButton(R.id.expense_opt2);
+                state = false;
                 break;
             case R.id.expense_opt3:
                 activeBtn = "Social Life";
                 activateButton(R.id.expense_opt3);
+                state = false;
                 break;
             case R.id.expense_opt4:
                 activeBtn = "Bills";
                 activateButton(R.id.expense_opt4);
+                state = false;
                 break;
             case R.id.expense_opt5:
                 activeBtn = "Health";
                 activateButton(R.id.expense_opt5);
+                state = false;
                 break;
             case R.id.expense_opt6:
                 activeBtn = "Gifts";
                 activateButton(R.id.expense_opt6);
+                state = false;
                 break;
             case R.id.expense_opt7:
                 activeBtn = "Other";
                 activateButton(R.id.expense_opt7);
+                state = false;
                 break;
         }
     }
-
 
     public void deactivateButton(int id) {
         ExtendedFloatingActionButton switchbtn = (ExtendedFloatingActionButton) findViewById(id);
