@@ -35,6 +35,7 @@ public class FAB_PLUS_EXTENSION extends AppCompatActivity {
 
     public void onFabClick (View view){
         MainActivity mainObj = new MainActivity();
+//        HomeFragment mainObj = new HomeFragment();
         EditText inputMoney =(EditText) findViewById(R.id.inputMoney);
         if (!inputMoney.getText().toString().isEmpty()) {
             float tempBalance = Float.parseFloat(inputMoney.getText().toString());

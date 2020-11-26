@@ -1,34 +1,36 @@
 package com.example.budget_planner;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.database.Cursor;
+import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.database.Cursor;
-import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
-import android.widget.Toast;
-
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
-public class TransactionHistory extends AppCompatActivity {
+public class HistoryFragment extends Fragment {
     Database database;
-    private ArrayList <String> historyType, historyTotal, historyChange, historyDate;
+    private ArrayList<String> historyType, historyTotal, historyChange, historyDate;
     CustomAdapter customAdapter;
     RecyclerView recyclerView;
 
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_transaction_history);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.fragment_history, container, false);
 
-        recyclerView = findViewById(R.id.recyclerview);
+        recyclerView = v.findViewById(R.id.recyclerview);
 
-        database = new Database(TransactionHistory.this);
+        database = new Database(getActivity());
         historyType = new ArrayList<>();
         historyTotal = new ArrayList<>();
         historyChange = new ArrayList<>();
@@ -36,15 +38,16 @@ public class TransactionHistory extends AppCompatActivity {
 
         //recycler view
         displayData();
-        customAdapter = new CustomAdapter(TransactionHistory.this, historyType, historyTotal, historyChange, historyDate);
+        customAdapter = new CustomAdapter(getActivity(), historyType, historyTotal, historyChange, historyDate);
         recyclerView.setAdapter(customAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(TransactionHistory.this));
-    }
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
 
+        return v;
+    }
     public void  displayData () {
         Cursor cursor = database.readData();
         if (cursor.getCount() == 0) {
-            Toast.makeText(this,"No History", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getActivity(),"No History", Toast.LENGTH_SHORT).show();
         }else {
             while (cursor.moveToNext()){
                 historyTotal.add(cursor.getString(1));
@@ -59,4 +62,5 @@ public class TransactionHistory extends AppCompatActivity {
         Collections.reverse(historyDate);
 
     }
+
 }
