@@ -1,8 +1,10 @@
 package com.example.budget_planner;
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.DialogInterface;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -32,7 +34,7 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
     private FloatingActionButton FabPlus;
-    private Button deleteDb;
+    private FloatingActionButton deleteDb;
     private Button switchChart;
     private TextView totalBalance;
     private boolean state = true;
@@ -60,12 +62,11 @@ public class HomeFragment extends Fragment {
         totalBalance.setText("$"+String.valueOf(Balance));
 
         //Delete Database
-        deleteDb = (Button)v.findViewById(R.id.deleteDbBtn);
+        deleteDb = (FloatingActionButton)v.findViewById(R.id.deleteDbBtn);
         deleteDb.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                getActivity().deleteDatabase("history.db");
-                updateChart(v);
+                warningPrompt(v);
             }
         });
 
@@ -74,6 +75,7 @@ public class HomeFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 state = !state;
+                switchChart.setText(state?"Expense":"Income");
                 updateChart(v);
             }
         });
@@ -175,7 +177,26 @@ public class HomeFragment extends Fragment {
         setupPieChart(v);
     }
 
-
+    public void warningPrompt (final View v) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
+        builder.setTitle("Delete all Data?")
+                .setMessage("All of your history and charts will be deleted!");
+        builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User clicked OK button
+                getActivity().deleteDatabase("history.db");
+                updateChart(v);
+            }
+        });
+        builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                // User cancelled the dialog
+            }
+        });
+// Create the AlertDialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
+    }
 }
 
 

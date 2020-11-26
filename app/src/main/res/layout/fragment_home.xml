@@ -36,27 +36,14 @@
             android:textSize="45sp" />
     </RelativeLayout>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/historyBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="@+id/container_layout_fab"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout"
-        app:layout_constraintVertical_bias="0.147" />
-
     <androidx.coordinatorlayout.widget.CoordinatorLayout
 
         android:id="@+id/container_layout_fab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="500dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
             android:id="@+id/addReceipt"
@@ -84,17 +71,19 @@
             app:fabSize="normal"
             app:tint="@null" />
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/deleteDbBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|start"
+            android:layout_margin="16dp"
+            android:src="@drawable/ic_baseline_delete_24"
+            app:backgroundTint="@color/colorPrimary"
 
-    <Button
-        android:id="@+id/deleteDbBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="17dp"
-        android:text="Delete DB"
-        app:layout_constraintStart_toEndOf="@+id/historyBtn"
-        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+            app:fabSize="normal"
+            app:tint="@null" />
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <com.github.mikephil.charting.charts.PieChart
         android:id="@+id/incomeChart"
@@ -110,10 +99,10 @@
         android:id="@+id/switchChart"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="162dp"
-        android:text="Switch"
+        android:text="Expense"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/deleteDbBtn" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/incomeChart" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
