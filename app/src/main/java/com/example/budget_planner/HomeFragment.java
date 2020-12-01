@@ -91,12 +91,16 @@ public class HomeFragment extends Fragment {
     }
 
     public void setupPieChart (View v) {
+        int[] colors = {Color.parseColor("#F7BBA6"),Color.parseColor("#ED8495"),
+                        Color.parseColor("#E05286"),Color.parseColor("#A73B8F"),
+                        Color.parseColor("#6F2597"),Color.parseColor("#bd2b59"),
+                        Color.parseColor("#cf2738")};
         List<PieEntry> pieEntries = new ArrayList<>();
         for (int i = 0; i < filteredTotalSum.size(); i++) {
             pieEntries.add(new PieEntry(filteredTotalSum.get(i), filteredIncomeList.get(i)));
         }
         PieDataSet pieDataSet = new PieDataSet(pieEntries, null);
-        pieDataSet.setColors(ColorTemplate.PASTEL_COLORS);
+        pieDataSet.setColors(colors);
         pieDataSet.setValueTextSize(14f);
         pieDataSet.setUsingSliceColorAsValueLineColor(true);
         pieDataSet.setValueLinePart1OffsetPercentage(30);
