@@ -1,4 +1,4 @@
-package com.example.budget_planner;
+package com.fardeen.budget_planner;
 
 import com.github.mikephil.charting.charts.PieChart;
 import com.github.mikephil.charting.data.PieEntry;

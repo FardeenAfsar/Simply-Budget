@@ -1,4 +1,4 @@
-package com.example.budget_planner;
+package com.fardeen.budget_planner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -7,7 +7,6 @@ import android.graphics.Color;
 import android.view.View;
 
 import android.os.Bundle;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 

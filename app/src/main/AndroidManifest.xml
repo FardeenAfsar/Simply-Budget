@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.budget_planner">
+    package="com.fardeen.budget_planner">
 
     <application
         android:allowBackup="true"
@@ -10,8 +10,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".TransactionHistory"></activity>
-        <activity android:name=".FAB_PLUS_EXTENSION" />
-        <activity android:name=".MainActivity">
+        <activity android:name="com.fardeen.budget_planner.FAB_PLUS_EXTENSION" />
+        <activity android:name="com.fardeen.budget_planner.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
