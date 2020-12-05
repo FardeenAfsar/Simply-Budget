@@ -1,16 +1,23 @@
 package com.fardeen.budget_planner;
 
+import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.DialogInterface;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.net.Uri;
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,17 +28,29 @@ import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.mlkit.vision.common.InputImage;
+import com.google.mlkit.vision.text.Text;
+import com.google.mlkit.vision.text.TextRecognition;
+import com.google.mlkit.vision.text.TextRecognizer;
 
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
     private FloatingActionButton FabPlus;
     private FloatingActionButton deleteDb;
+    private ExtendedFloatingActionButton scanReceipt;
     private Button switchChart;
     private TextView totalBalance;
     private boolean state = true;
+    private static final int GALLERY_REQUEST_CODE = 100;
+    TextView message;
 
     Database database;
     private ArrayList<String> incomeList, filteredIncomeList;
@@ -54,6 +73,17 @@ public class HomeFragment extends Fragment {
         });
         totalBalance = (TextView)v.findViewById(R.id.totalBalance);
         totalBalance.setText("$"+String.valueOf(Balance));
+
+        //Scan Receipt
+        message = (TextView)v.findViewById(R.id.changetxt);
+        scanReceipt =(ExtendedFloatingActionButton)v.findViewById(R.id.addReceipt);
+        scanReceipt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent gallery = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                getActivity().startActivityForResult(gallery, GALLERY_REQUEST_CODE);
+            }
+        });
 
         //Delete Database
         deleteDb = (FloatingActionButton)v.findViewById(R.id.deleteDbBtn);
@@ -80,7 +110,7 @@ public class HomeFragment extends Fragment {
     }
 
     public void openExtension () {
-        Intent intent = new Intent(getActivity(), FAB_PLUS_EXTENSION.class);
+        Intent intent = new Intent(getContext(), FAB_PLUS_EXTENSION.class);
         startActivity(intent);
     }
 

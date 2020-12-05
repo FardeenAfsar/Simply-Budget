@@ -2,6 +2,7 @@ package com.fardeen.budget_planner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.view.View;
@@ -30,6 +31,18 @@ public class FAB_PLUS_EXTENSION extends AppCompatActivity {
         //Set Transaction Time
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/YY");
         currentDate = simpleDateFormat.format(new Date());
+        EditText inputMoney = (EditText) findViewById(R.id.inputMoney);
+        Intent intent = getIntent();
+        try {
+            String str = intent.getStringExtra("total");
+            if (Float.parseFloat(str) > 0) {
+                inputMoney.setText(str);
+            }else {
+                Toast.makeText(this, "Failed to get amount",Toast.LENGTH_SHORT).show();
+            }
+        }catch (Exception ignored){
+
+        }
     }
 
     public void onFabClick (View view){
@@ -54,7 +67,6 @@ public class FAB_PLUS_EXTENSION extends AppCompatActivity {
         }catch (Exception e){
             Toast.makeText(FAB_PLUS_EXTENSION.this, "Invalid Input",Toast.LENGTH_SHORT).show();
         }
-
     }
     public void incomeFab (View view){
         ExtendedFloatingActionButton incFab = (ExtendedFloatingActionButton) findViewById(R.id.incomeFab);
